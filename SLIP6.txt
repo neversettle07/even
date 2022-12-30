@@ -1,0 +1,159 @@
+Q1) Define an Employee class with suitable attributes having getSalary() method, which returns 
+salary withdrawn by a particular employee. Write a class Manager which extends a class Employee, 
+override the getSalary() method, which will return salary of manager by adding traveling allowance, 
+house rent allowance etc.
+
+
+class employee
+{
+String name;
+int sal;
+employee()
+{}
+employee(String name,int sal)
+{
+this.name=name;
+this.sal=sal;
+}
+int getsalary()
+{
+return sal;
+}
+}
+class manager extends employee
+{
+int hrs,ta;
+manager()
+{
+}
+manager(String name,int sal,int hrs,int ta)
+{
+super(name,sal);
+this.hrs=hrs;
+this.ta=ta;
+}
+int getsalary()
+{
+return(super.getsalary()+hrs+ta);
+}
+}
+public class managersal
+{
+public static void main(String args[])
+{
+manager m=new manager("Aditya",30000,5000,8000);
+System.out.println("Manager salary : "+m.getsalary());
+}
+} 
+
+=======================================================================================================================
+
+
+Q2) Create an abstract class “order” having members id, description. Create two subclasses 
+ “PurchaseOrder” and “Sales Order” having members customer name and Vendor name 
+ respectively. Definemethods accept and display in all cases. Create 3 objects each of Purchase 
+ Order and Sales Order and accept and display details.
+
+import java.util.*;
+abstract class order
+{
+ int id;
+ String des;
+ abstract void accept();
+ abstract void display();
+}
+class porder extends order
+{
+ Scanner sc=new Scanner(System.in);
+ String cname;
+ 
+ void accept()
+ {
+ System.out.println("Enter id:");
+ id=sc.nextInt();
+ System.out.println("Enter description:");
+ des=sc.next();
+ System.out.println("Enter customer Name:");
+ cname=sc.next();
+ } 
+ void display()
+ {
+ System.out.println("ID:"+id);
+ System.out.println("Discription:"+des);
+ System.out.println("Customer name:"+cname); 
+ System.out.println("************************************");
+ }
+}
+class sorder extends order
+{
+ Scanner sc=new Scanner(System.in);
+ String vname;
+ 
+ void accept()
+ {
+ System.out.println("Enter id:");
+ id=sc.nextInt();
+ System.out.println("Enter description:");
+ des=sc.next();
+ System.out.println("Enter vendor Name:");
+ vname=sc.next();
+ }
+ void display()
+ {
+ // System.out.println("************************************");
+ System.out.println("ID:"+id);
+ System.out.println("Discription:"+des);
+ System.out.println("Vendor name:"+vname); 
+ System.out.println("************************************");
+ } 
+}
+public class Main
+{
+ public static void main(String args[])
+ {
+ int ch;
+ Scanner sc=new Scanner(System.in);
+ do
+ {
+ System.out.println("1.purchase order \n 2.Sale order \n 3.Exit \n Enter your choice");
+ ch=sc.nextInt();
+ switch(ch)
+ {
+ case 1:
+ System.out.println("Information of purchase order");
+ order p[]=new porder[3];
+ for(int i=0;i<3;i++)
+ {
+ p[i]=new porder();
+ p[i].accept();
+ }
+ System.out.println("Display Purchase information:");
+ System.out.println("************************************");
+ for(int i=0;i<3;i++)
+p[i].display();
+break; 
+ case 2:
+ System.out.println("Enter Information of sale order");
+ order s[]=new sorder[3];
+ for(int i=0;i<3;i++)
+ {
+ s[i]=new sorder();
+s[i].display();
+ }
+ System.out.println("Display Sale information:");
+ System.out.println("************************************");
+ for(int i=0;i<3;i++)
+ s[i].display();
+ break; 
+ case 3: 
+ System.exit(0);
+ 
+ } 
+ 
+ }while(ch!=3);
+ 
+ }
+}
+
+
+       

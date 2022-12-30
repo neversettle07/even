@@ -1,0 +1,60 @@
+Q1) Write a program to find the Square of given number using function interface.
+
+
+@FunctionalInterface 
+interface PrintNumber
+{
+public void print(int numl);
+}
+public class PrintSquare
+{
+public static void main(String[] args)
+{
+PrintNumber p = n-> System.out.println("Square is: "+n*n); 
+p.print(25);
+}
+}
+
+==============================================================================================
+
+Q2) Write a program to design a screen using Awt that,
+
+
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+public class Slip16_2 extends JFrame
+{
+JMenuBar mb;
+JMenu m1,m2,m3;
+JMenuItem l1,l2,l3;
+Slip16_2()
+{
+mb=new JMenuBar();
+m1=new JMenu("File"); 
+m2=new JMenu("Edit");
+m3=new JMenu("About");
+l1=new JMenuItem("New");
+m1.add(l1);
+m1.add("Open");
+m1.add("Save");
+m1.addSeparator();
+m1.add("Show About");
+m1.addSeparator();
+m1.add("Exit");
+l1.setMnemonic(KeyEvent.VK_N);
+KeyStroke ks=KeyStroke.getKeyStroke(KeyEvent.VK_N,Event.CTRL_MASK);
+l1.setAccelerator(ks);
+mb.add(m1);
+mb.add(m2);
+mb.add(m3);
+setJMenuBar(mb);
+setVisible(true);
+setSize(400,400);
+setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+}
+public static void main(String args[])
+{
+new Slip16_2();
+}
+}

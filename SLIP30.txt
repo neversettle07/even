@@ -1,0 +1,90 @@
+Q1) Write program to define class Person with data member as Personname,Aadharno, Panno. Accept 
+information for 5 objects and display appropriate information (use this keyword).
+import java.util.*;
+import java.io.*;
+
+
+class person
+{
+String Personname;
+int Adharno,Panno;
+person(String Personname,int Adharno,int Panno)
+{
+this.Personname=Personname;
+this.Adharno=Adharno;
+this.Panno=Panno;
+}
+public void display()
+{
+System.out.println("Person name : "+Personname);
+System.out.println("Adhar number : "+Adharno);
+System.out.println("Pan Number : "+Panno);
+}
+}
+public class Persondetail
+{
+public static void main(String args[])
+{
+Scanner sc= new Scanner(System.in);
+System.out.println("Person name : ");
+String Personname = sc.nextLine();
+System.out.println("\nAdhar Number : ");
+int Adharno = sc.nextInt();
+System.out.println("\nPan Number : ");
+int Panno = sc.nextInt();
+person p=new person(Personname,Adharno,Panno);
+p.display();
+}
+}
+
+==========================================================================================================================
+
+Q2) Write a program that creates a user interface to perform integer divisions. The user enters two 
+numbers in the text fields, Number1 and Number2. The division of Number1 and Number2 is 
+displayed in the Result field when the Divide button is clicked. If Number1 or Number2 were not an 
+integer, the program would throw a NumberFormatException. If Number2 were Zero, the program 
+would throw an Arithmetic Exception Display the exception in a message dialog box.
+
+import java.awt.*;
+import java.applet.*;
+import java.awt.event.*;
+import javax.swing.*;
+/*<applet code="DivisionApplet" width=600 height=200>
+</applet>*/
+public class DivisionApplet extends Applet implements ActionListener {
+ Label L1,L2,L3;
+ TextField T1,T2,Result;
+ Button B1;
+ public void init() {
+ L1=new Label("Enter First Num :");
+ add(L1);
+ T1=new TextField(10);
+ add(T1);
+ L2=new Label("Enter Second Num :");
+ add(L2);
+ T2=new TextField(10);
+ add(T2);
+ L3=new Label("result");
+ add(L3);
+ Result=new TextField(10);
+ add(Result);
+ B1=new Button("Divide");
+ add(B1);
+ B1.addActionListener(this);
+ }
+ public void actionPerformed(ActionEvent e) {
+ if(e.getSource()==B1) {
+ try {
+ int value1=Integer.parseInt(T1.getText());
+ int value2=Integer.parseInt(T2.getText());
+ int result=value1/value2;
+ Result.setText(String.valueOf(result));
+ }
+ catch(NumberFormatException nfe) {
+ JOptionPane.showMessageDialog(this,"Not a number");
+ }
+ catch(ArithmeticException ae) {
+ JOptionPane.showMessageDialog(this,"Divided by Zero");
+ }
+ }
+ }

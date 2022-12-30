@@ -1,0 +1,119 @@
+Q1) Write a program to create an abstract class named Shape that contains two integers and an 
+empty method named printArea(). Provide three classes named Rectangle, Triangle and Circle 
+such that each one of the classes extends the class Shape. Each one of the classes contain only
+the method printArea() that prints the area of the given shape. (use method overriding).
+
+
+abstract class Shape
+{
+int x,y;
+abstract void area(double x,double y);
+}
+class Rectangle extends Shape
+{
+void area(double x,double y)
+{
+System.out.println("Area of rectangle is : "+(x*y));
+}
+}
+class Triangle extends Shape
+{
+void area(double x,double y)
+{
+System.out.println("Area of Triangle is : "+0.5*x*y);
+}
+}
+class Circle extends Shape
+{
+void area(double x,double y)
+{
+System.out.println("Area of Circle is : "+(3.14*x*x));
+}
+}
+public class area
+{
+public static void main(String args[])
+{
+Rectangle r=new Rectangle();
+r.area(3,5);
+Triangle t=new Triangle();
+t.area(4,7);
+Circle c=new Circle();
+c.area(4,4);
+}
+}
+
+===========================================================================================================================
+
+Q2) Write a program that handles all mouse events and shows the event name at the center of the 
+Window, red in color when a mouse event is fired. (Use adapter classes).
+
+
+
+import java.awt.*;
+import java.applet.*;
+import java.awt.event.*;
+/*
+<applet code="appletDemo.class" width=400 height=200>
+</applet>
+*/
+public class appletDemo extends Applet implements 
+MouseMotionListener,MouseListener,KeyListener
+{
+String msg="";
+public void init()
+{
+ setBackground(Color.cyan);
+ addMouseMotionListener(this);
+ addMouseListener(this);
+ addKeyListener(this);
+}
+public void paint(Graphics g)
+{
+ g.drawString(msg,10,10);
+}
+public void mouseDragged(MouseEvent e)
+{
+ msg="Mouse Dragged.";
+ repaint();
+}
+public void mouseMoved(MouseEvent e)
+{
+ msg="Mouse Moved.";
+ repaint();
+}
+public void mouseClicked(MouseEvent e)
+{
+ msg="Mouse Button "+e.getButton()+"clicked.";
+ repaint();
+}
+public void mousePressed(MouseEvent e)
+{
+ msg="Mouse Button "+e.getButton()+"pressed.";
+ repaint();
+}
+public void mouseReleased(MouseEvent e)
+{
+ msg="Mouse Button Released.";
+ repaint();
+}
+public void mouseEntered(MouseEvent e)
+{
+}
+public void mouseExited(MouseEvent e)
+{
+}
+public void keyTyped(KeyEvent e)
+{
+ msg="Key Typed "+ e.getKeyChar();
+ repaint();
+}
+public void keyPressed(KeyEvent e)
+{
+ msg="Key pressed "+ e.getKeyChar();
+ repaint();
+}
+public void keyReleased(KeyEvent e)
+{
+}
+}

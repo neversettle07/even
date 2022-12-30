@@ -1,0 +1,112 @@
+Q1) Write a program that reads on file name from the user, then displays information about whether 
+the file exists, whether the file is readable, whether the file is writable, the type of file and the length 
+of the file in bytes.
+
+
+
+import java.util.*;
+import java.io.*;
+class file
+{
+public static void p(String str)
+{
+System.out.println(str);
+}
+public static void analyze(String s)
+{
+File f=new File(s);
+if(f.exists())
+{
+p(f.getName()+" is file name");
+p(f.canRead()?"Can readable":"Not readable");
+p(f.canWrite()?"Is writable":"Not Writable");
+p("Length is : "+f.length());
+p("Last Modified : "+f.lastModified());
+}
+if(f.isDirectory())
+{
+p(f.getName()+" is Directory");
+p("List of files :");
+String dir[]=f.list();
+for(int i=0;i<dir.length;i++)
+{
+p(dir[i]);
+}
+}
+}
+}
+public class filedetails
+{
+public static void main(String args[]) throws IOException
+{
+file f=new file();
+Scanner sc = new Scanner(System.in);
+System.out.println("Enter name of file : ");
+String s = sc.nextLine();
+f.analyze(s);
+}
+}
+
+============================================================================================================
+
+
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import javax.swing.*;
+
+
+class temp extends JFrame implements ActionListener
+{
+    JLabel cl, fl;
+    JTextField c, f;
+    JButton ftoc, ctof;
+    temp()
+    {
+        cl = new JLabel("Enter the temp in  c: "); 
+        fl = new JLabel("Enter the temp in  f: ");
+        c = new JTextField();
+        f = new JTextField();
+        ftoc = new JButton("F to C");
+        ctof = new JButton("C to F");
+        
+        add(cl);
+        add(c);
+        add(fl);
+        add(f);
+        add(ctof);
+        add(ftoc);
+        
+        
+        
+        ctof.addActionListener(this);
+        ftoc.addActionListener(this);
+        
+        setTitle("Convertor");
+        setSize(300, 300);
+        setVisible(true);
+        setLayout(new GridLayout(5, 2));
+    }
+    public void actionPerformed(ActionEvent e)
+    {
+        float t;
+         if(e.getSource()==ctof)
+         {
+             t = Float.parseFloat(c.getText());
+             t = (t*9/5)+32;
+             String.format("%.1f", t);
+             f.setText(Float.toString(t));
+         }
+         if(e.getSource()==ftoc)
+         {
+             t = Float.parseFloat(f.getText());
+             t = (t-32)*5/9;
+             String.format("%.1f", t);
+             c.setText(Float.toString(t));
+         }
+    }
+    public static void main()
+    {
+        new temp();
+    }
+}

@@ -1,0 +1,131 @@
+Q1) Write a program to print an array after changing the rows and columns of a given 
+ two-dimensional array.
+
+import java.util.Scanner;
+public class Solution {
+public static void main(String[] args) {
+int[][] twodm = {
+{10, 20, 30},
+{40, 50, 60}
+};
+System.out.print("Original Array:\n");
+print_array(twodm);
+System.out.print("After changing the rows and columns of the said array:");
+transpose(twodm);
+}
+private static void transpose(int[][] twodm) {
+int[][] newtwodm = new int[twodm[0].length][twodm.length];
+for (int i = 0; i < twodm.length; i++) {
+for (int j = 0; j < twodm[0].length; j++) {
+newtwodm[j][i] = twodm[i][j];
+}
+}
+print_array(newtwodm);
+}
+private static void print_array(int[][] twodm) {
+for (int i = 0; i < twodm.length; i++) {
+for (int j = 0; j < twodm[0].length; j++) {
+System.out.print(twodm[i][j] + " ");
+}
+System.out.println();
+}
+}
+}
+
+
+==================================================================================================================
+
+
+Q2) Write a program to design a screen using Awt that will take a user name and password. If the user 
+name and password are not same, raise an Exception with appropriate message. User can have 3 login 
+chances only. Use clear button to clear the TextFields.
+
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+public class passawt {
+ Frame f;
+ static int count=0;
+ Label l1,l2,result;
+ Button submit,reset;
+ TextField usertxt,passtxt;
+ passawt() {
+ f=new Frame("login");
+ l1=new Label("username:");
+ l2=new Label("password:");
+ submit=new Button("submit");
+ reset=new Button("reset");
+ usertxt=new TextField();
+ passtxt=new TextField();
+ result=new Label();
+ l1.setBounds(10,20,60,40);
+ l2.setBounds(10,50,60,40);
+ usertxt.setBounds(70,33,120,20);
+ passtxt.setBounds(70,59,120,20);
+ submit.setBounds(10,100,80,30);
+ reset.setBounds(100,100,80,30);
+ result.setBounds(100,140,120,30);
+ f.add(l1);
+ f.add(l2);
+ f.add(submit);
+ f.add(reset);
+ f.add(usertxt);
+ f.add(passtxt);
+ f.add(result);
+ actions();
+ f.setSize(300,300);
+ f.setLayout(null);
+ f.setVisible(true);
+ }
+ public int getCount(){
+ return count;
+ }
+ public void actions() {
+ submit.addActionListener(new ActionListener() {
+ @Override
+ public void actionPerformed(ActionEvent e) {
+ try{
+ if(count==2) {
+ System.exit(0);
+ throw new userPassException("wrong");
+ }
+ }catch(Exception ex){
+ System.out.println(ex);
+ }
+ if(e.getSource()==submit){
+ if(passtxt.getText().equals(usertxt.getText())){
+ result.setText("correct pass and username");
+ }
+ else{
+ count++;
+ result.setText("incorrect");
+ }
+ }
+ }
+ });
+ reset.addActionListener(new ActionListener(){
+ public void actionPerformed(ActionEvent e){
+ if(e.getSource()==reset){
+ passtxt.setText("");
+ usertxt.setText("");
+ }
+ }
+ });
+ }
+ public static void main(String[] args) {
+ try {
+ passawt obj=new passawt();
+ if(obj.getCount()>=3){
+ throw new userPassException("count exteed");
+ }
+ }catch (Exception e){
+ System.out.println(e);
+ }
+ }
+ }
+class userPassException extends Exception{
+ userPassException(String str){
+ super(str);
+ }
+}
